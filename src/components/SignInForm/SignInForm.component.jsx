@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import {
-  signInWithGooglePopup,
   signInUserWithEmailAndPassword,
+  signInWithGooglePopup,
 } from '../../utils';
 
 import { FormInputComponent } from '../FormInput';
@@ -43,8 +43,9 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      const res = await signInUserWithEmailAndPassword(email, password);
-      if (res) {
+      const { user } = await signInUserWithEmailAndPassword(email, password);
+      if (user) {
+        // setCurrentUser(user);
         resetFormFields();
       }
     } catch (error) {
