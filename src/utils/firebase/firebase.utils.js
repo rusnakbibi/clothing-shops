@@ -20,13 +20,23 @@ import {
   getDocs,
 } from 'firebase/firestore';
 
+// const firebaseConfig = {
+//   apiKey: 'AIzaSyBTmPFsMGGsTlo9rSupyLnwuGTNqBRJSDI',
+//   authDomain: 'clothing-shop-db-ff9c3.firebaseapp.com',
+//   projectId: 'clothing-shop-db-ff9c3',
+//   storageBucket: 'clothing-shop-db-ff9c3.appspot.com',
+//   messagingSenderId: '788338389951',
+//   appId: '1:788338389951:web:92e56baf59d811c389670a',
+// };
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyBTmPFsMGGsTlo9rSupyLnwuGTNqBRJSDI',
-  authDomain: 'clothing-shop-db-ff9c3.firebaseapp.com',
-  projectId: 'clothing-shop-db-ff9c3',
-  storageBucket: 'clothing-shop-db-ff9c3.appspot.com',
-  messagingSenderId: '788338389951',
-  appId: '1:788338389951:web:92e56baf59d811c389670a',
+  apiKey: 'AIzaSyA82rjHnZCx6yadM_SXafqdOzm7N7Ei798',
+  authDomain: 'clothing-shop-bc577.firebaseapp.com',
+  projectId: 'clothing-shop-bc577',
+  storageBucket: 'clothing-shop-bc577.appspot.com',
+  messagingSenderId: '1094651873650',
+  appId: '1:1094651873650:web:bca1e58eda937f23d7b5eb',
+  measurementId: 'G-84H330ZVZ3',
 };
 
 // Initialize Firebase
@@ -58,24 +68,18 @@ export const addCollectionAndDocuments = async (
   });
 
   await batch.commit();
-
-  console.log('done');
 };
 
 export const getCategoriesAndDocuments = async () => {
-  const collectionRef = collection(db, 'categories');
-  const myQuery = query(collectionRef);
+  const collectionRef = collection(db, 'collections');
+  const q = query(collectionRef);
 
-  const querySnapshot = await getDocs(myQuery);
+  const querySnapshot = await getDocs(q);
   const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
     const { title, items } = docSnapshot.data();
-
     acc[title.toLowerCase()] = items;
-
     return acc;
   }, {});
-
-  console.log('call');
 
   return categoryMap;
 };
