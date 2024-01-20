@@ -14,7 +14,12 @@ import {
 import CartItem from '../CartItem/CartItem.component';
 
 const CartDropdown = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, setIsCartOpen } = useContext(CartContext);
+
+  const onClickHandler = () => {
+    setIsCartOpen(false);
+  };
+
   return (
     <CartDropDownContainer>
       <CartItems>
@@ -25,7 +30,9 @@ const CartDropdown = () => {
         )}
       </CartItems>
       <Link to="/checkout">
-        <ButtonComponent>GO TO CHECKOUT</ButtonComponent>
+        <ButtonComponent onClick={onClickHandler}>
+          GO TO CHECKOUT
+        </ButtonComponent>
       </Link>
     </CartDropDownContainer>
   );

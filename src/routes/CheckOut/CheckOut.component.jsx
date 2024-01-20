@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 import { CartContext } from '../../context';
 
@@ -12,11 +12,7 @@ import {
 } from './CheckOut.styles.jsx';
 
 const CheckOut = () => {
-  const { cartItems, totalPrice, setIsCartOpen } = useContext(CartContext);
-
-  useEffect(() => {
-    setIsCartOpen(false);
-  });
+  const { cartItems, totalPrice } = useContext(CartContext);
 
   return (
     <CheckoutContainer>
