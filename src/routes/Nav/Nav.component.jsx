@@ -1,9 +1,9 @@
-import { Fragment, useContext } from 'react';
+import { Fragment } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 
-import { CartContext } from '../../context';
+import { selectIsCartOpen } from '../../store/reducers';
 import { signOutUser } from '../../utils';
 import { selectCurrentUser } from '../../store/reducers';
 
@@ -20,7 +20,7 @@ import {
 
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
-  const { isCartOpen } = useContext(CartContext);
+  const isCartOpen = useSelector(selectIsCartOpen);
 
   return (
     <Fragment>
