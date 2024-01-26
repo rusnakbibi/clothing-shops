@@ -52,7 +52,7 @@ export const addItemToCart = (cartItems, productToAdd) => {
   return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newItemsCart);
 };
 
-export const removeItemToCart = (cartItems, cartItemToRemove) => {
+export const removeItemFromCart = (cartItems, cartItemToRemove) => {
   const newItemsCart = removeCartItem(cartItems, cartItemToRemove);
   return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newItemsCart);
 };
