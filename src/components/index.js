@@ -7,3 +7,4 @@ export { default as CartDropDown } from './CartDropdown';
 export { default as CartItem } from './CartItem';
 export { default as CheckoutItem } from './CheckoutItem';
 export { default as CategoryPreview } from './CategoryPreview';
+export { default as Spinner } from './Spinner';
