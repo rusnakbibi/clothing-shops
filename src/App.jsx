@@ -2,12 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 
-import {
-  onAuthStateChangedListener,
-  createUserDocumentFromAuth,
-} from './utils';
-
-import { setCurrentUser } from './store/reducers';
+import { checkUserSession } from './store/reducers';
 
 import {
   HomePage,
@@ -20,14 +15,7 @@ import {
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
-      if (user) {
-        createUserDocumentFromAuth(user);
-      }
-      dispatch(setCurrentUser(user));
-    });
-
-    return unsubscribe;
+    dispatch(checkUserSession());
   }, [dispatch]);
 
   return (

@@ -1,9 +1,7 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-import {
-  signInUserWithEmailAndPassword,
-  signInWithGooglePopup,
-} from '../../utils';
+import { googleSignInStart, emailSignInStart } from '../../store/reducers';
 
 import { FormInputComponent } from '../FormInput';
 import Button, { BUTTON_TYPE_CLASSES } from '../Button/Button.component';
@@ -16,6 +14,7 @@ const defaultFormFields = {
 };
 
 const SignInForm = () => {
+  const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
@@ -25,7 +24,7 @@ const SignInForm = () => {
 
   const signInWithGoogle = async () => {
     try {
-      await signInWithGooglePopup();
+      dispatch(googleSignInStart());
     } catch (error) {
       switch (error.code) {
         case 'auth/popup-closed-by-user':
@@ -42,12 +41,11 @@ const SignInForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    dispatch(emailSignInStart(email, password));
+
     try {
-      const { user } = await signInUserWithEmailAndPassword(email, password);
-      if (user) {
-        // setCurrentUser(user);
-        resetFormFields();
-      }
+      dispatch(emailSignInStart(email, password));
+      resetFormFields();
     } catch (error) {
       switch (error.code) {
         case 'auth/user-not-found':
