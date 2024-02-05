@@ -37,7 +37,6 @@ export function* getSnapshotFromUserAuth(userAuth, additionalDetails) {
 export function* isUserAuthenticated() {
   try {
     const userAuth = yield call(getCurrentUser);
-    console.log(userAuth);
     if (!userAuth) return;
 
     yield call(getSnapshotFromUserAuth, userAuth);
@@ -72,7 +71,7 @@ export function* signInWithGoogle() {
   }
 }
 
-export function* signInWithEmail({ payload: email, password }) {
+export function* signInWithEmail({ payload: { email, password } }) {
   try {
     const { user } = yield call(
       signInUserWithEmailAndPassword,
@@ -118,7 +117,7 @@ export function* onSignOutStart() {
   yield takeLatest(USER_ACTION_TYPES.SIGN_OUT_START, signOut);
 }
 
-export function* userSaga() {
+export function* userSagas() {
   yield all([
     call(onCheckUserSession),
     call(onGoogleSignInStart),

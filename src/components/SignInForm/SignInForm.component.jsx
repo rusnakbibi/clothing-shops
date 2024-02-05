@@ -41,8 +41,6 @@ const SignInForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    dispatch(emailSignInStart(email, password));
-
     try {
       dispatch(emailSignInStart(email, password));
       resetFormFields();
