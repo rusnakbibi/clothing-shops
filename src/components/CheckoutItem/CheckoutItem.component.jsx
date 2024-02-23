@@ -4,8 +4,9 @@ import {
   addItemToCart,
   removeItemFromCart,
   clearItemFromCart,
-  selectCartItems,
-} from '../../store/reducers';
+} from 'actions/cart';
+
+import { selectCartItems } from 'selectors/cart';
 
 import {
   CheckoutItemContainer,

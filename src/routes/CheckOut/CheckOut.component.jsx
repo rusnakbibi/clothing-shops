@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import { selectCartItems, selectCartTotalPrice } from '../../store/reducers';
+import { selectCartItems, selectCartTotalPrice } from 'selectors/cart';
 
 import { CheckoutItem, PaymentForm } from '../../components';
 

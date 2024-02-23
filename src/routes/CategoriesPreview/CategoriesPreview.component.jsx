@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import {
   selectCategoriesMap,
   selectCategoriesIsLoading,
-} from '../../store/reducers';
+} from 'selectors/categories.selector';
 
 import { CategoryPreview, Spinner } from '../../components';
 

@@ -1,4 +1,4 @@
-import { toTitleCase } from '../../utils';
+import { toTitleCase } from 'utils/titleCase';
 
 import ProductCard from '../ProductCard/ProductCard.component';
 

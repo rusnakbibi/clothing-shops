@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  User,
 } from 'firebase/auth';
 
 import {
@@ -20,14 +21,7 @@ import {
   getDocs,
 } from 'firebase/firestore';
 
-// const firebaseConfig = {
-//   apiKey: 'AIzaSyBTmPFsMGGsTlo9rSupyLnwuGTNqBRJSDI',
-//   authDomain: 'clothing-shop-db-ff9c3.firebaseapp.com',
-//   projectId: 'clothing-shop-db-ff9c3',
-//   storageBucket: 'clothing-shop-db-ff9c3.appspot.com',
-//   messagingSenderId: '788338389951',
-//   appId: '1:788338389951:web:92e56baf59d811c389670a',
-// };
+import { ObjectToAdd, Category, AdditionalInformation } from 'types/index';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA82rjHnZCx6yadM_SXafqdOzm7N7Ei798',
@@ -55,10 +49,10 @@ export const signInWithGooglePopup = () =>
 
 export const db = getFirestore();
 
-export const addCollectionAndDocuments = async (
-  collectionKey,
-  objectsToAdd
-) => {
+export const addCollectionAndDocuments = async <T extends ObjectToAdd>(
+  collectionKey: string,
+  objectsToAdd: T[]
+): Promise<void> => {
   const collectionRef = collection(db, collectionKey);
   const batch = writeBatch(db);
 
@@ -70,17 +64,17 @@ export const addCollectionAndDocuments = async (
   await batch.commit();
 };
 
-export const getCategoriesAndDocuments = async () => {
+export const getCategoriesAndDocuments = async (): Promise<Category[]> => {
   const collectionRef = collection(db, 'collections');
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map((doc) => doc.data());
+  return querySnapshot.docs.map((doc) => doc.data() as Category);
 };
 
 export const createUserDocumentFromAuth = async (
-  userAuth,
-  additionalInfo = {}
+  userAuth: User,
+  additionalInfo = {} as AdditionalInformation
 ) => {
   if (!userAuth) return;
 

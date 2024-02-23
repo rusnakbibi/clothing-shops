@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { setIsCartOpen, selectCartItems } from '../../store/reducers';
+import { selectCartItems } from 'selectors/cart';
+import { setIsCartOpen } from 'actions/cart';
 
 import { ButtonComponent } from '../Button';
 

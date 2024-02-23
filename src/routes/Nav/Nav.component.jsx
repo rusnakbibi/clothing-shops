@@ -3,11 +3,8 @@ import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
-import {
-  signOutStart,
-  selectIsCartOpen,
-  selectCurrentUser,
-} from '../../store/reducers';
+import { selectIsCartOpen } from 'selectors/cart';
+import { signOutStart, selectCurrentUser } from '../../store/reducers';
 
 import { ReactComponent as CrwnLogo } from '../../assets/crown.svg';
 
