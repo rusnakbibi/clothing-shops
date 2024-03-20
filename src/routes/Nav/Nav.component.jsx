@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
 import { selectIsCartOpen } from 'selectors/cart';
-import { signOutStart, selectCurrentUser } from '../../store/reducers';
+import { selectCurrentUser } from 'selectors/user';
+import { signOutStart } from 'actions/user';
 
 import { ReactComponent as CrwnLogo } from '../../assets/crown.svg';
 

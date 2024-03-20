@@ -6,7 +6,7 @@ import { toTitleCase } from '../../utils';
 import {
   selectCategoriesMap,
   selectCategoriesIsLoading,
-} from 'selectors/categories.selector';
+} from 'selectors/categories';
 
 import { ProductCard, Spinner } from '../../components';
 

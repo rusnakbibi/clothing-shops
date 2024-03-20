@@ -31,6 +31,9 @@
       ],
       "selectors/*": [
         "selectors/*"
+      ],
+      "saga/*": [
+        "saga/*"
       ]
     },
     "allowJs": true,

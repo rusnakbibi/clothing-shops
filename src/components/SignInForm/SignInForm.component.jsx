@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { googleSignInStart, emailSignInStart } from '../../store/reducers';
+import { googleSignInStart, emailSignInStart } from 'actions/user';
 
 import { FormInputComponent } from '../FormInput';
 import Button, { BUTTON_TYPE_CLASSES } from '../Button/Button.component';

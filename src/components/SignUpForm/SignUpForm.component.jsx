@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { signUpStart } from '../../store/reducers';
+import { signUpStart } from 'actions/user';
 
 import { FormInputComponent } from '../FormInput';
 import { ButtonComponent } from '../Button';

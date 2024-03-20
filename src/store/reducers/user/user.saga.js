@@ -9,7 +9,7 @@ import {
   signOutUser,
 } from '../../../utils';
 
-import { USER_ACTION_TYPES } from './user.types';
+import { USER_ACTION_TYPES } from 'enum/userActionTypes';
 
 import {
   signInSuccess,
