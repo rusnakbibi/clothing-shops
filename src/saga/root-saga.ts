@@ -1,8 +1,8 @@
-import { all, call } from 'redux-saga/effects';
+import { all, call } from 'typed-redux-saga/macro';
 
-import { categoriesSaga } from '../store/reducers/categories/categories.saga';
-import { userSagas } from '../store/reducers/user/user.saga';
+import { categoriesSaga } from './categories';
+import { userSagas } from './user';
 
 export function* rootSaga() {
-  yield all([call(categoriesSaga), call(userSagas)]);
+  yield* all([call(categoriesSaga), call(userSagas)]);
 }

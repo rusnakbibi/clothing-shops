@@ -1,6 +1,7 @@
 import { USER_ACTION_TYPES } from 'enum/userActionTypes';
 import { Action, ActionWithPayload } from './createAction';
 import { AdditionalInformation, UserData } from './firebase';
+import { User } from 'firebase/auth';
 
 export type UserDataForSignUpReq = {
   email: string;
@@ -28,7 +29,7 @@ export type SignInFailed = ActionWithPayload<USER_ACTION_TYPES.SIGN_IN_FAILED, E
 
 export type SignUpStart = ActionWithPayload<USER_ACTION_TYPES.SIGN_UP_START, UserDataForSignUpReq>;
 
-export type SignUpSuccess = ActionWithPayload<USER_ACTION_TYPES.SIGN_UP_SUCCESS, { user: UserData, additionalDetails: AdditionalInformation }>;
+export type SignUpSuccess = ActionWithPayload<USER_ACTION_TYPES.SIGN_UP_SUCCESS, { user: User, additionalDetails: AdditionalInformation }>;
 
 export type SignUpFailed = ActionWithPayload<USER_ACTION_TYPES.SIGN_UP_FAILED, Error>;
 
