@@ -16,7 +16,7 @@ import {
   LogoContainer,
   NavLinksContainer,
   NavLink,
-} from './Nav.styles.jsx';
+} from './Nav.styles';
 
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -36,11 +36,11 @@ const Navigation = () => {
         <NavLinksContainer>
           <NavLink to="/shop">SHOP</NavLink>
           {currentUser ? (
-            <NavLink as="span" onClick={onSignOutClickHandler}>
+            <NavLink to="/auth" onClick={onSignOutClickHandler}>
               SIGN OUT
             </NavLink>
           ) : (
-            <NavLink to="/auth">SIGN IN</NavLink>
+            <NavLink to="/">SIGN IN</NavLink>
           )}
           <CartIcon />
         </NavLinksContainer>

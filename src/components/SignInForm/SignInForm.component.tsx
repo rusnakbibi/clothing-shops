@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useState, FormEvent, ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
+import { AuthError, AuthErrorCodes } from 'firebase/auth';
 
 import { googleSignInStart, emailSignInStart } from 'actions/user';
+import { BUTTON_TYPE_CLASSES } from 'enum/buttonType';
 
 import { FormInputComponent } from '../FormInput';
-import Button, { BUTTON_TYPE_CLASSES } from '../Button/Button.component';
+import Button from '../Button/Button.component';
 
-import { SignInContainer, ButtonsContainer } from './SignInForm.styles.jsx';
+import { SignInContainer, ButtonsContainer } from './SignInForm.styles';
 
 const defaultFormFields = {
   email: '',
@@ -26,8 +28,8 @@ const SignInForm = () => {
     try {
       dispatch(googleSignInStart());
     } catch (error) {
-      switch (error.code) {
-        case 'auth/popup-closed-by-user':
+      switch ((error as AuthError).code) {
+        case AuthErrorCodes.POPUP_CLOSED_BY_USER:
           alert(
             "It looks like the sign-in process was interrupted. If you closed the pop-up window by mistake, please try signing in again. If you're experiencing issues with the sign-in process, feel free to reach out to us for assistance or try a different sign-in method. Your security and ease of access are important to us!"
           );
@@ -38,20 +40,20 @@ const SignInForm = () => {
     }
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
       dispatch(emailSignInStart(email, password));
       resetFormFields();
     } catch (error) {
-      switch (error.code) {
-        case 'auth/user-not-found':
+      switch ((error as AuthError).code) {
+        case AuthErrorCodes.USER_DELETED:
           alert(
             "We couldn't find an account associated with this email address"
           );
           break;
-        case 'auth/wrong-password':
+        case AuthErrorCodes.INVALID_PASSWORD:
           alert('Incorrect password for account');
           break;
         default:
@@ -61,7 +63,7 @@ const SignInForm = () => {
     }
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value });
@@ -71,7 +73,7 @@ const SignInForm = () => {
     <SignInContainer>
       <h2>Already have an account?</h2>
       <span>Sign in with your email and password</span>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit}>
         <FormInputComponent
           label="Email"
           type="email"

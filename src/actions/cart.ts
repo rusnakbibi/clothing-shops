@@ -2,13 +2,13 @@ import { createAction, withMatcher } from 'utils/reducer';
 
 import { CART_ACTION_TYPES } from 'enum/cartActionTypes';
 import {
-  CartItem,
+  CartItemType,
   SetCartItems,
   SetIsCartOpen,
   CategoryItem
 } from 'types/index';
 
-const addCartItem = (cartItems: CartItem[], productToAdd: CategoryItem): CartItem[] => {
+const addCartItem = (cartItems: CartItemType[], productToAdd: CategoryItem): CartItemType[] => {
   //find if cartItems contains productToAdd
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.id === productToAdd.id
@@ -27,7 +27,7 @@ const addCartItem = (cartItems: CartItem[], productToAdd: CategoryItem): CartIte
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
 
-const removeCartItem = (cartItems: CartItem[], productToRemove: CartItem): CartItem[] => {
+const removeCartItem = (cartItems: CartItemType[], productToRemove: CartItemType): CartItemType[] => {
   //find if cartItems contains productToAdd
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.id === productToRemove.id
@@ -47,26 +47,26 @@ const removeCartItem = (cartItems: CartItem[], productToRemove: CartItem): CartI
   );
 };
 
-const clearCartItem = (cartItems: CartItem[], cartItemToClear: CartItem): CartItem[] =>
+const clearCartItem = (cartItems: CartItemType[], cartItemToClear: CartItemType): CartItemType[] =>
   cartItems.filter((cartItem) => cartItem.id !== cartItemToClear.id);
 
-export const setCartItems = withMatcher((cartItems: CartItem[]): SetCartItems =>
+export const setCartItems = withMatcher((cartItems: CartItemType[]): SetCartItems =>
   createAction(CART_ACTION_TYPES.SET_CART_ITEMS, cartItems));
 
 export const setIsCartOpen = withMatcher((isCartOpen: boolean): SetIsCartOpen =>
   createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, isCartOpen));
 
-export const addItemToCart = (cartItems: CartItem[], productToAdd: CategoryItem) => {
+export const addItemToCart = (cartItems: CartItemType[], productToAdd: CategoryItem) => {
   const newCartItems = addCartItem(cartItems, productToAdd);
   return setCartItems(newCartItems);
 };
 
-export const removeItemFromCart = (cartItems: CartItem[], cartItemToRemove: CartItem) => {
+export const removeItemFromCart = (cartItems: CartItemType[], cartItemToRemove: CartItemType) => {
   const newCartItems = removeCartItem(cartItems, cartItemToRemove);
   return setCartItems(newCartItems);
 }
 
-export const clearItemFromCart = (cartItems: CartItem[], cartItemToClear: CartItem) => {
+export const clearItemFromCart = (cartItems: CartItemType[], cartItemToClear: CartItemType) => {
   const newCartItems = clearCartItem(cartItems, cartItemToClear);
   return setCartItems(newCartItems);
 }

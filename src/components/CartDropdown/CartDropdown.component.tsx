@@ -10,7 +10,7 @@ import {
   CartDropDownContainer,
   CartItems,
   EmptyMessage,
-} from './CartDropdown.styles.jsx';
+} from './CartDropdown.styles';
 
 import CartItem from '../CartItem/CartItem.component';
 

@@ -1,14 +1,21 @@
 import { toTitleCase } from 'utils/titleCase';
 
+import { CategoryItem } from 'types/category';
+
 import ProductCard from '../ProductCard/ProductCard.component';
 
 import {
   CategoryPreviewContainer,
   Title,
   Preview,
-} from './CategoryPreview.styles.jsx';
+} from './CategoryPreview.styles';
 
-const CategoryPreview = ({ title, products }) => {
+type CategoryPreviewData = {
+  title: string;
+  products: CategoryItem[];
+};
+
+const CategoryPreview = ({ title, products }: CategoryPreviewData) => {
   return (
     <CategoryPreviewContainer>
       <h2>
